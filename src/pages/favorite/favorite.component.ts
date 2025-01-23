@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
+
 import { ResultListComponent } from '../../components/result-list/result-list.component';
 import { FAVORITE_STORAGE_KEY } from '../../services/favorite.service';
 
@@ -7,7 +9,7 @@ import { FAVORITE_STORAGE_KEY } from '../../services/favorite.service';
   selector: 'app-favorite',
   templateUrl: './favorites.component.html',
   styleUrls: ['./favorites.component.scss'],
-  imports: [CommonModule, ResultListComponent],
+  imports: [CommonModule, ResultListComponent, TranslateModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FavoriteComponent {

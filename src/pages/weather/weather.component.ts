@@ -17,7 +17,6 @@ import {
   finalize,
   fromEvent,
   map,
-  of,
   Subscription,
   throwError,
   timer,
@@ -44,6 +43,7 @@ import { EventService } from '../../services/event.service';
 import { CHANGE_SEARCH_OPTIONS } from './weather';
 import { SELECT_WEATHER_ITEM } from '../../components/result-list/result-list';
 import { StorageService } from '../../services/storage.service';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-weather',
@@ -56,6 +56,7 @@ import { StorageService } from '../../services/storage.service';
     MatButtonModule,
     ResultListComponent,
     MatProgressSpinnerModule,
+    TranslateModule,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -71,7 +72,9 @@ export class WeatherComponent implements OnInit, AfterViewInit, OnDestroy {
   toggleMobileMenu = false;
   searchOptions = {
     showResultInCelcius: true,
+    defaultLanguage: 'en',
   };
+
   isLoadingSearch = false;
   isLoadingResult = false;
 
@@ -83,7 +86,8 @@ export class WeatherComponent implements OnInit, AfterViewInit, OnDestroy {
     private changeDetection: ChangeDetectorRef,
     private eventService: EventService,
     private storageService: StorageService,
-    private activeRoute: ActivatedRoute
+    private activeRoute: ActivatedRoute,
+    private translateService: TranslateService
   ) {}
 
   ngOnInit(): void {
@@ -109,6 +113,12 @@ export class WeatherComponent implements OnInit, AfterViewInit, OnDestroy {
   changeTemperatureUnit(type: 'F' | 'C') {
     this.searchOptions.showResultInCelcius = type === 'C';
     this.changeSearchOptions();
+    this.draw();
+  }
+
+  changeLanguage(lang: 'ES' | 'EN') {
+    this.searchOptions.defaultLanguage = lang.toLowerCase();
+    this.translateService.use(this.searchOptions.defaultLanguage);
     this.draw();
   }
 

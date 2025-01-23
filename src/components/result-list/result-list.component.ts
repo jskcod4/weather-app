@@ -24,12 +24,13 @@ import {
 } from '../../services/favorite.service';
 import { AlertService } from '../../helpers/alert.service';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-result-list',
   templateUrl: './result-list.component.html',
   styleUrls: ['./result-list.component.scss'],
-  imports: [CommonModule, MatIconModule, ScrollingModule],
+  imports: [CommonModule, MatIconModule, ScrollingModule, TranslateModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ResultListComponent implements OnInit, OnDestroy {
@@ -40,7 +41,7 @@ export class ResultListComponent implements OnInit, OnDestroy {
   sourceTag = SEARCH_BY_WEATHER_KEY;
 
   @Input()
-  title = 'Recent searches';
+  title = 'PANEL_LIST.RECENT_SEARCHES';
 
   @Input()
   showFavoriteOption = true;

@@ -1,0 +1,25 @@
+{
+  "SEARCH": {
+    "PLACEHOLDER": "Buscar ciudades",
+    "F": "Mostrar resultado en Fahrenheit",
+    "C": "Mostrar resultado en Celsius",
+    "CHANGE_LANGUAGE": "Cambiar idioma"
+  },
+  "PANEL": {
+    "AIR_CONDITION": "Aire acondicionado",
+    "HUMIDITY": "Humedad",
+    "VIENTO": "Viento",
+    "LOCAL_TIME": "Hora local",
+    "FEELS_LIKE": "Sensacion térmica"
+  },
+  "PANEL_LIST": {
+    "RECENT_SEARCHES": "Búsquedas recientes",
+    "HISTORY": "Historial",
+    "FAVORITES": "Favoritos"
+  },
+  "SIDEBAR": {
+    "WEATHER": "Clima",
+    "HISTORY": "Historial",
+    "FAVORITES": "Favoritos"
+  }
+}

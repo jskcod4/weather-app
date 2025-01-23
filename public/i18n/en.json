@@ -1,0 +1,25 @@
+{
+  "SEARCH": {
+    "PLACEHOLDER": "Search for a cities",
+    "F": "Show result in Fahrenheit",
+    "C": "Show result in Celsius",
+    "CHANGE_LANGUAGE": "Change language"
+  },
+  "PANEL": {
+    "AIR_CONDITION": "Air condition",
+    "HUMIDITY": "Humidity",
+    "WIND": "Wind",
+    "LOCAL_TIME": "Local time",
+    "FEELS_LIKE": "Feels like"
+  },
+  "PANEL_LIST": {
+    "RECENT_SEARCHES": "Recent searches",
+    "HISTORY": "History",
+    "FAVORITES": "Favorites"
+  },
+  "SIDEBAR": {
+    "WEATHER": "Weather",
+    "HISTORY": "History",
+    "FAVORITES": "Favorites"
+  }
+}

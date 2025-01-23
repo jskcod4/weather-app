@@ -4,7 +4,7 @@
 
 This project is a weather application built with Angular 19. It is designed to display weather data for cities and includes features such as favorite cities, weather search, and history of searched cities.
 
-###  Project Structure
+### Project Structure
 
 The project is structured into several main folders, each serving specific purposes. Below is an explanation of each folder and its contents.
 
@@ -29,6 +29,7 @@ The layout folder includes the layout-related components, such as:
 5. Models
 
 This folder contains the TypeScript models (interfaces and classes) that define the data structures used in the application, such as:
+
 - Cache Model
 - City Model
 - Weather Model
@@ -36,6 +37,7 @@ This folder contains the TypeScript models (interfaces and classes) that define 
 6. Pages
 
 This folder contains the application’s main pages:
+
 - FavoritesPage: A page that displays the list of favorite cities.
 - HistoryPage: A page that shows the history of searched cities.
 - WeatherPage: The main page that displays the weather data for a selected city.
@@ -43,6 +45,7 @@ This folder contains the application’s main pages:
 7. Services
 
 This folder contains various services responsible for different functionalities within the app:
+
 - CacheService: Prevents duplicate API calls by caching data locally.
 - EventService: Used for emitting and listening to events throughout the application.
 - FavoriteService: Allows users to add or remove cities from their list of favorites.
@@ -65,7 +68,7 @@ https://github.com/jskcod4/weather-app.git
 cd weather-app
 ```
 
-#### 2.	Install the dependencies:
+#### 2. Install the dependencies:
 
 ```
 npm install
@@ -80,14 +83,16 @@ To start the application in development mode:
 ```
 ng serve
 ```
+
 or
+
 ```
 npx ng service
 ```
 
 #### 2. Open your browser and navigate to:
 
-```http://localhost:4200```
+`http://localhost:4200`
 
 ### Build the Application
 
@@ -111,7 +116,7 @@ This will run all unit tests using Karma and Jasmine.
 
 ### Run Service Worker
 
-If you have configured a service worker for offline functionality, you can serve the application with a local HTTP server like http-server: 
+If you have configured a service worker for offline functionality, you can serve the application with a local HTTP server like http-server:
 
 1. Install http-server globally if not already installed:
 
@@ -119,13 +124,13 @@ If you have configured a service worker for offline functionality, you can serve
 npm install -g http-server
 ```
 
-2.	Build the application for production:
+2. Build the application for production:
 
 ```
 ng build --prod
 ```
 
-3.	Serve the built application with the service worker enabled:
+3. Serve the built application with the service worker enabled:
 
 ```
 http-server ./dist/weather-app/browser/
@@ -141,13 +146,13 @@ Instead of pagination, I used AngularVisualScroll[https://material.angular.io/cd
 
 Key Benefits of AngularVisualScroll:
 
-1.	Improved Performance: It renders only the visible items, reducing the load on the browser and improving overall performance.
+1. Improved Performance: It renders only the visible items, reducing the load on the browser and improving overall performance.
 
-2.	Memory Efficiency: By limiting the number of DOM elements, it reduces memory consumption, making the app more efficient.
+2. Memory Efficiency: By limiting the number of DOM elements, it reduces memory consumption, making the app more efficient.
 
-3.	Seamless User Experience: Despite the large number of items, users experience smooth scrolling and faster interactions without delays or jank.
+3. Seamless User Experience: Despite the large number of items, users experience smooth scrolling and faster interactions without delays or jank.
 
-4.	Easy Integration: It can be seamlessly integrated with Angular applications, offering a simple solution to optimize long lists without the complexity of traditional pagination.
+4. Easy Integration: It can be seamlessly integrated with Angular applications, offering a simple solution to optimize long lists without the complexity of traditional pagination.
 
 This approach ensures that the app remains fast and user-friendly while avoiding unnecessary complexity.
 
@@ -157,23 +162,34 @@ In this project, I implemented a custom CacheService that stores previously made
 
 Benefits of Using CacheService:
 
-1.	Reduced API Calls: By storing and reusing query results, the service prevents repeated requests for the same data within the cache time, minimizing load on the server and improving performance.
+1. Reduced API Calls: By storing and reusing query results, the service prevents repeated requests for the same data within the cache time, minimizing load on the server and improving performance.
 
-2.	Improved Response Time: With cached results, the app can instantly retrieve data without waiting for an API response, enhancing user experience.
+2. Improved Response Time: With cached results, the app can instantly retrieve data without waiting for an API response, enhancing user experience.
 
-3.	Optimized Resource Usage: Reducing API calls helps save on bandwidth and reduces pressure on the server, making the application more efficient overall.
+3. Optimized Resource Usage: Reducing API calls helps save on bandwidth and reduces pressure on the server, making the application more efficient overall.
 
-4.	Customizable Cache Duration: The cache duration is configurable (set to 5 minutes here), providing flexibility in how long data is retained in the cache.
+4. Customizable Cache Duration: The cache duration is configurable (set to 5 minutes here), providing flexibility in how long data is retained in the cache.
 
 ### Advantages of Using Block Element Modifier (BEM)
 
-1.	Clear Structure: BEM promotes a clean and structured naming convention, dividing styles into blocks, elements, and modifiers. This approach avoids complex or conflicting CSS selectors.
+1. Clear Structure: BEM promotes a clean and structured naming convention, dividing styles into blocks, elements, and modifiers. This approach avoids complex or conflicting CSS selectors.
 
-2.	Scalability: Ideal for large-scale projects where multiple developers are involved, BEM ensures consistency in naming, making the codebase easier to understand and extend.
+2. Scalability: Ideal for large-scale projects where multiple developers are involved, BEM ensures consistency in naming, making the codebase easier to understand and extend.
 
-3.	Reusability: By breaking styles into modular components (blocks, elements), you can reuse these components across different parts of the application, improving maintainability.
+3. Reusability: By breaking styles into modular components (blocks, elements), you can reuse these components across different parts of the application, improving maintainability.
 
-4.	Avoiding Global Styles: BEM encourages the use of isolated components, which minimizes the risk of unintended style overrides and conflicts.
+4. Avoiding Global Styles: BEM encourages the use of isolated components, which minimizes the risk of unintended style overrides and conflicts.
 
-5.	Performance: With clear and specific selectors, BEM reduces the likelihood of redundancy and ensures styles are applied efficiently.
+5. Performance: With clear and specific selectors, BEM reduces the likelihood of redundancy and ensures styles are applied efficiently.
 
+### Advantages of NgRx Translate:
+
+1. Centralization of Translations: NgRx Translate allows keeping all translations in one place, making it easy to maintain and manage multilingual content.
+
+2. Multilingual Support: The project supports both Spanish and English, allowing users to easily switch between the two languages.
+
+3. Scalability: By using NgRx, translations can be managed in an efficient and scalable manner, resulting in optimal performance even with a large number of translations.
+
+Deployment:
+
+To implement NgRx Translate, translations were configured in separate JSON files for each language, and through an NgRx store, the global state of translations is managed, facilitating switching between languages dynamically in the user interface.

@@ -1,7 +1,11 @@
 <div class="searchable">
   <div class="searchable__input">
     <div class="searchable__input__wrapper">
-      <input #searchElement type="text" placeholder="Search for a cities" />
+      <input
+        #searchElement
+        type="text"
+        [placeholder]="'SEARCH.PLACEHOLDER' | translate"
+      />
 
       <mat-spinner
         *ngIf="isLoadingSearch"
@@ -34,7 +38,7 @@
           (click)="changeTemperatureUnit('F')"
         >
           <mat-icon>thermostat</mat-icon>
-          <span>Show result in Fahrenheit</span>
+          <span>{{ "SEARCH.F" | translate }}</span>
         </button>
         <button
           *ngIf="!searchOptions.showResultInCelcius"
@@ -42,7 +46,24 @@
           (click)="changeTemperatureUnit('C')"
         >
           <mat-icon>thermostat</mat-icon>
-          <span>Show result in Celcius</span>
+          <span>{{ "SEARCH.C" | translate }}</span>
+        </button>
+
+        <button
+          *ngIf="searchOptions.defaultLanguage === 'en'"
+          mat-menu-item
+          (click)="changeLanguage('ES')"
+        >
+          <mat-icon>language</mat-icon>
+          <span>{{ "SEARCH.CHANGE_LANGUAGE" | translate }}</span>
+        </button>
+        <button
+          *ngIf="searchOptions.defaultLanguage === 'es'"
+          mat-menu-item
+          (click)="changeLanguage('EN')"
+        >
+          <mat-icon>language</mat-icon>
+          <span>{{ "SEARCH.CHANGE_LANGUAGE" | translate }}</span>
         </button>
       </mat-menu>
     </div>
@@ -152,7 +173,9 @@
     *ngIf="!isLoadingResult && weatherSearchResponse"
     class="searchable__card__details"
   >
-    <div class="searchable__card__details__title">Air conditions</div>
+    <div class="searchable__card__details__title">
+      {{ "PANEL.AIR_CONDITION" | translate }}
+    </div>
     <div class="searchable__card__details__content">
       <div class="searchable__card__details__content__item">
         <div class="searchable__card__details__content__item__icon">
@@ -160,7 +183,7 @@
         </div>
         <div class="searchable__card__details__content__item__content">
           <div class="searchable__card__details__content__item__content__title">
-            Humidity
+            {{ "PANEL.HUMIDITY" | translate }}
           </div>
           <div class="searchable__card__details__content__item__content__value">
             {{ weatherSearchResponse.current.humidity }} km/h
@@ -186,7 +209,7 @@
         </div>
         <div class="searchable__card__details__content__item__content">
           <div class="searchable__card__details__content__item__content__title">
-            Local hour
+            {{ "PANEL.LOCAL_TIME" | translate }}
           </div>
           <div class="searchable__card__details__content__item__content__value">
             {{ weatherSearchResponse.location.localtime | date : "shortTime" }}
@@ -199,7 +222,7 @@
         </div>
         <div class="searchable__card__details__content__item__content">
           <div class="searchable__card__details__content__item__content__title">
-            Feels like
+            {{ "PANEL.FEELS_LIKE" | translate }}
           </div>
           <div
             *ngIf="searchOptions.showResultInCelcius"
