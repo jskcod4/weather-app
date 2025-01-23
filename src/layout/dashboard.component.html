@@ -1,0 +1,31 @@
+<nav class="sidebar">
+  <ul class="sidebar__elements">
+    <li
+      class="sidebar__elements__item"
+      routerLink="/dashboard/weather"
+      routerLinkActive="sidebar__elements__item--active"
+    >
+      <mat-icon> foggy </mat-icon>
+      <a>Weather</a>
+    </li>
+    <li
+      class="sidebar__elements__item"
+      routerLink="/dashboard/history"
+      routerLinkActive="sidebar__elements__item--active"
+    >
+      <mat-icon> list </mat-icon>
+      <a> History </a>
+    </li>
+    <li
+      class="sidebar__elements__item"
+      routerLink="/dashboard/favorite"
+      routerLinkActive="sidebar__elements__item--active"
+    >
+      <mat-icon> star </mat-icon>
+      <a> Favorites </a>
+    </li>
+  </ul>
+</nav>
+<div class="content">
+  <router-outlet></router-outlet>
+</div>

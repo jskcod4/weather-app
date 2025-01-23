@@ -1,0 +1,232 @@
+<div class="searchable">
+  <div class="searchable__input">
+    <div class="searchable__input__wrapper">
+      <input #searchElement type="text" placeholder="Search for a cities" />
+
+      <mat-spinner
+        *ngIf="isLoadingSearch"
+        class="searchable__input__wrapper__progress"
+        diameter="20"
+      ></mat-spinner>
+
+      <button
+        class="searchable__input__wrapper__options"
+        mat-icon-button
+        [matMenuTriggerFor]="menu"
+        aria-label="Button with menu option for search"
+      >
+        <mat-icon>more_vert</mat-icon>
+      </button>
+
+      <button
+        class="searchable__input__wrapper__outside"
+        mat-icon-button
+        aria-label="Button with menu option for mobile recent searches"
+        (click)="toggleMobileMenu = !toggleMobileMenu"
+      >
+        <mat-icon>list</mat-icon>
+      </button>
+
+      <mat-menu #menu="matMenu">
+        <button
+          *ngIf="searchOptions.showResultInCelcius"
+          mat-menu-item
+          (click)="changeTemperatureUnit('F')"
+        >
+          <mat-icon>thermostat</mat-icon>
+          <span>Show result in Fahrenheit</span>
+        </button>
+        <button
+          *ngIf="!searchOptions.showResultInCelcius"
+          mat-menu-item
+          (click)="changeTemperatureUnit('C')"
+        >
+          <mat-icon>thermostat</mat-icon>
+          <span>Show result in Celcius</span>
+        </button>
+      </mat-menu>
+    </div>
+
+    <div
+      class="searchable__input__results"
+      [ngClass]="{
+        'searchable__input__results--active':
+          resultSearchCities.length > 0 && showSearchResults
+      }"
+    >
+      <ul>
+        <li
+          *ngFor="let result of resultSearchCities"
+          (click)="selectCity(result)"
+        >
+          {{ result.name }}, {{ result.country }}
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- empty search message -->
+  <div
+    *ngIf="
+      !isLoadingResult &&
+      !weatherSearchResponse &&
+      keywordSearchCities &&
+      resultSearchCities.length === 0
+    "
+    class="searchable__card__empty"
+  >
+    <div class="searchable__card__empty__content">
+      <div class="searchable__card__empty__content__title">
+        No results found for "{{ keywordSearchCities }}"
+      </div>
+      <div class="searchable__card__empty__content__subtitle">
+        Please try another city
+      </div>
+    </div>
+  </div>
+  <!--/ empty search message -->
+
+  <!-- empty component -->
+  <div
+    *ngIf="
+      !isLoadingResult &&
+      !weatherSearchResponse &&
+      !keywordSearchCities &&
+      resultSearchCities.length === 0
+    "
+    class="searchable__card__empty"
+  >
+    <div class="searchable__card__empty__content">
+      <div class="searchable__card__empty__content__title">
+        Welcome to Weather App
+      </div>
+      <div class="searchable__card__empty__content__subtitle">
+        Search for a city to get the weather
+      </div>
+    </div>
+  </div>
+  <!--/ empty component -->
+
+  <!-- is loading result -->
+  <div *ngIf="isLoadingResult" class="searchable__progress">
+    <mat-spinner diameter="40"></mat-spinner>
+  </div>
+  <!--/ is loading result -->
+
+  <div
+    *ngIf="!isLoadingResult && weatherSearchResponse"
+    class="searchable__card__result"
+  >
+    <div class="searchable__card__result__content">
+      <div class="searchable__card__result__content__title">
+        {{ weatherSearchResponse.location.name }}
+      </div>
+      <div class="searchable__card__result__content__subtitle">
+        {{ weatherSearchResponse.current.condition.text }}
+      </div>
+
+      <div
+        *ngIf="searchOptions.showResultInCelcius"
+        class="searchable__card__result__content__temperature"
+      >
+        {{ weatherSearchResponse.current.temp_c }}°C
+      </div>
+      <div
+        *ngIf="!searchOptions.showResultInCelcius"
+        class="searchable__card__result__content__temperature"
+      >
+        {{ weatherSearchResponse.current.temp_f }}°F
+      </div>
+    </div>
+    <div class="searchable__card__result__extra">
+      <img
+        [src]="weatherSearchResponse.current.condition.icon"
+        alt="Icon weather"
+        height="auto"
+        width="64"
+      />
+    </div>
+  </div>
+
+  <div
+    *ngIf="!isLoadingResult && weatherSearchResponse"
+    class="searchable__card__details"
+  >
+    <div class="searchable__card__details__title">Air conditions</div>
+    <div class="searchable__card__details__content">
+      <div class="searchable__card__details__content__item">
+        <div class="searchable__card__details__content__item__icon">
+          <mat-icon> water_drop </mat-icon>
+        </div>
+        <div class="searchable__card__details__content__item__content">
+          <div class="searchable__card__details__content__item__content__title">
+            Humidity
+          </div>
+          <div class="searchable__card__details__content__item__content__value">
+            {{ weatherSearchResponse.current.humidity }} km/h
+          </div>
+        </div>
+      </div>
+      <div class="searchable__card__details__content__item">
+        <div class="searchable__card__details__content__item__icon">
+          <mat-icon> air </mat-icon>
+        </div>
+        <div class="searchable__card__details__content__item__content">
+          <div class="searchable__card__details__content__item__content__title">
+            Wind
+          </div>
+          <div class="searchable__card__details__content__item__content__value">
+            {{ weatherSearchResponse.current.wind_kph }} km/h
+          </div>
+        </div>
+      </div>
+      <div class="searchable__card__details__content__item">
+        <div class="searchable__card__details__content__item__icon">
+          <mat-icon> timer </mat-icon>
+        </div>
+        <div class="searchable__card__details__content__item__content">
+          <div class="searchable__card__details__content__item__content__title">
+            Local hour
+          </div>
+          <div class="searchable__card__details__content__item__content__value">
+            {{ weatherSearchResponse.location.localtime | date : "shortTime" }}
+          </div>
+        </div>
+      </div>
+      <div class="searchable__card__details__content__item">
+        <div class="searchable__card__details__content__item__icon">
+          <mat-icon> device_thermostat </mat-icon>
+        </div>
+        <div class="searchable__card__details__content__item__content">
+          <div class="searchable__card__details__content__item__content__title">
+            Feels like
+          </div>
+          <div
+            *ngIf="searchOptions.showResultInCelcius"
+            class="searchable__card__details__content__item__content__value"
+          >
+            {{ weatherSearchResponse.current.feelslike_c }}°C
+          </div>
+          <div
+            *ngIf="!searchOptions.showResultInCelcius"
+            class="searchable__card__details__content__item__content__value"
+          >
+            {{ weatherSearchResponse.current.feelslike_f }}°F
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<aside class="aside" [ngClass]="{ 'aside--active': toggleMobileMenu }">
+  <button
+    class="aside__close"
+    mat-icon-button
+    aria-label="Button with menu option for mobile recent searches"
+    (click)="toggleMobileMenu = !toggleMobileMenu"
+  >
+    <mat-icon>close</mat-icon>
+  </button>
+  <app-result-list></app-result-list>
+</aside>

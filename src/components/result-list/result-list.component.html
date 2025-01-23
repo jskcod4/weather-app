@@ -1,0 +1,58 @@
+<div class="aside">
+  <div class="aside__title">{{ title }}</div>
+
+  <cdk-virtual-scroll-viewport
+    appendOnly
+    itemSize="50"
+    class="aside__body"
+    style="min-height: 100%"
+  >
+    <div *cdkVirtualFor="let item of list" class="aside__body__item">
+      <div class="aside__body__item__content">
+        <div
+          class="aside__body__item__content__title"
+          (click)="selectItem(item)"
+        >
+          <span>{{ item.location.name }}</span>
+        </div>
+      </div>
+      <div class="aside__body__item__extra">
+        <div class="aside__body__item__extra__image">
+          <img
+            [src]="item.current.condition.icon"
+            alt="Icon weather"
+            height="auto"
+            width="64"
+          />
+        </div>
+        <div class="aside__body__item__extra__titles">
+          {{ item.current.condition.text }}
+          <span *ngIf="searchOptions.showResultInCelcius"
+            >{{ item.current.temp_c }} °C</span
+          >
+          <span *ngIf="!searchOptions.showResultInCelcius"
+            >{{ item.current.temp_f }} °F</span
+          >
+        </div>
+      </div>
+      <div class="aside__body__item__extra__xrt">
+        {{ item.location.localtime | date : "shortTime" }}
+      </div>
+      <div class="aside__body__item__extra__opt">
+        <mat-icon
+          *ngIf="!item?.isFavorite"
+          (click)="toggleFavorite(item, true)"
+        >
+          favorite_outline
+        </mat-icon>
+        <mat-icon
+          *ngIf="item?.isFavorite"
+          class="aside__body__item__extra__opt--fill"
+          (click)="toggleFavorite(item, false)"
+        >
+          favorite
+        </mat-icon>
+      </div>
+    </div>
+  </cdk-virtual-scroll-viewport>
+</div>
