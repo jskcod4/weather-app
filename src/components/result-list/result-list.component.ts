@@ -10,6 +10,9 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
 
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { TranslateModule } from '@ngx-translate/core';
+
 import { filter, Subscription } from 'rxjs';
 
 import { StorageService } from '../../services/storage.service';
@@ -23,8 +26,6 @@ import {
   FavoriteService,
 } from '../../services/favorite.service';
 import { AlertService } from '../../helpers/alert.service';
-import { ScrollingModule } from '@angular/cdk/scrolling';
-import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-result-list',

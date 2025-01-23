@@ -31,6 +31,8 @@ import { ActivatedRoute } from '@angular/router';
 
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+
 import {
   SEARCH_BY_WEATHER_KEY,
   WeatherService,
@@ -43,7 +45,6 @@ import { EventService } from '../../services/event.service';
 import { CHANGE_SEARCH_OPTIONS } from './weather';
 import { SELECT_WEATHER_ITEM } from '../../components/result-list/result-list';
 import { StorageService } from '../../services/storage.service';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-weather',
