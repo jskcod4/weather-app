@@ -92,7 +92,7 @@ npx ng service
 
 #### 2. Open your browser and navigate to:
 
-`http://localhost:4200`
+`http://localhost:4200/dashboard/weather`
 
 ### Build the Application
 
