@@ -138,13 +138,13 @@ http-server ./dist/weather-app/browser/
 
 This will serve the application on a local server with the service worker enabled, allowing you to test offline capabilities.
 
-### Optimization of Long Lists: Using AngularVisualScroll
+### Optimization of Long Lists: Using Angular VirtualScroll
 
 In the case of the Favorites History page, where a long list of data is already stored locally, I opted not to implement pagination. Since all the data is available at once, pagination isn’t necessary. However, if the list were fetched from the server, pagination would definitely be more applicable to manage performance.
 
-Instead of pagination, I used AngularVisualScroll[https://material.angular.io/cdk/scrolling/overview], a powerful component designed to optimize rendering performance for large lists. This component only renders visible items in the list, which significantly reduces the number of DOM elements that need to be managed, ensuring that the application remains responsive even when handling large datasets.
+Instead of pagination, I used Angular VirtualScroll[https://material.angular.io/cdk/scrolling/overview], a powerful component designed to optimize rendering performance for large lists. This component only renders visible items in the list, which significantly reduces the number of DOM elements that need to be managed, ensuring that the application remains responsive even when handling large datasets.
 
-Key Benefits of AngularVisualScroll:
+Key Benefits of Angular VirtualScroll:
 
 1. Improved Performance: It renders only the visible items, reducing the load on the browser and improving overall performance.
 
