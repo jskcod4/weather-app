@@ -148,7 +148,7 @@ export class ResultListComponent implements OnInit, OnDestroy {
     );
   }
 
-  private handleInitialSource() {
+  handleInitialSource() {
     const list =
       (this.storageService.getItem(
         this.sourceTag

@@ -183,7 +183,7 @@ export class WeatherComponent implements OnInit, AfterViewInit, OnDestroy {
     );
   }
 
-  private fetchSearchCities(keyword: string) {
+  fetchSearchCities(keyword: string) {
     this.keywordSearchCities = keyword;
     this.isLoadingSearch = true;
     this.draw();
@@ -212,7 +212,7 @@ export class WeatherComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  private fetchWeatherByCity(city: string) {
+  fetchWeatherByCity(city: string) {
     this.isLoadingResult = true;
     this.draw();
 
@@ -231,7 +231,7 @@ export class WeatherComponent implements OnInit, AfterViewInit, OnDestroy {
       });
   }
 
-  private handleFetchError(response: HttpErrorResponse) {
+  handleFetchError(response: HttpErrorResponse) {
     if (response.status === 0) {
       this.alertService.showWarning('Please check your internet connection.');
     } else if (response.status === 400) {
