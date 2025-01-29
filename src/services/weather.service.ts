@@ -22,13 +22,13 @@ export class WeatherService {
   ) {}
 
   searchCities(city: string): Observable<City[]> {
-    const url = `http://api.weatherapi.com/v1/search.json?key=${environment.apiKey}&q=${city}`;
+    const url = `https://api.weatherapi.com/v1/search.json?key=${environment.apiKey}&q=${city}`;
     const observable = this.http.get<City[]>(url);
     return this.cacheService.get(url, observable);
   }
 
   getWeather(city: string): Observable<WeatherSearchResponse> {
-    const url = `http://api.weatherapi.com/v1/current.json?key=${environment.apiKey}&q=${city}&aqi=no`;
+    const url = `https://api.weatherapi.com/v1/current.json?key=${environment.apiKey}&q=${city}&aqi=no`;
     const observable = this.http.get<WeatherSearchResponse>(url);
     return this.cacheService.get(url, observable).pipe(
       tap((res) => {
